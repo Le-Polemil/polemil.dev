@@ -9,15 +9,17 @@ import css from "./timeline.module.scss"
 interface ITimelineItemProps {
   title: string
   subTitle?: string
-  children: ReactNode
+  children?: ReactNode
   color?: string
   bgColor?: string
   subTitleColor?: string
+  isBarHatched?: boolean
   className?: string
   active?: boolean
   padding?: string
   length?: string
   size?: string
+  icon?: ReactNode
   onClose?(): void
   onClick?(): void
   onClickOnBar?(): void
@@ -30,10 +32,12 @@ export default function TimelineItem({
   color = "text-red-500",
   bgColor = "bg-stone-50",
   subTitleColor = "text-blue-500",
-  length = "h-36 lg:h-52 lg:w-40",
+  isBarHatched = false,
+  length = "h-48 3xl:h-52 3xl:w-40",
   size = "w-80",
   className = "",
   active = false,
+  icon,
   onClose = () => {},
   onClick = () => {},
   onClickOnBar = () => {},
@@ -45,7 +49,8 @@ export default function TimelineItem({
         "relative w-full flex items-center",
         length,
         color,
-        active && css.active
+        active && css.active,
+        isBarHatched && css.hatched
       )}
       onClick={onClickOnBar}
     >
@@ -70,22 +75,23 @@ export default function TimelineItem({
         )}
       >
         <span className="flex flex-col">
-          <time className={cN(color, "text-2xl font-archivo")}>{title}</time>
-          <Title.h6 className={cN("text-lg mb-2", subTitleColor)}>
+          <time className={cN(color, "text-xl font-archivo")}>{title}</time>
+          <Title.h6 className={cN("text-md mb-2", subTitleColor)}>
             {subTitle}
           </Title.h6>
         </span>
-        <div className="text-lg text-stone-800">{children}</div>
+        {icon}
 
-        <div
+        <button
+          type="button"
           onClick={(e) => {
             e.stopPropagation()
             onClose()
           }}
-          className="lg:hidden z-30 absolute -top-2 -right-2 text-center material-icons font-bold text-3xl p-3"
+          className="3xl:hidden z-30 absolute -top-2 -right-2 text-center material-icons font-bold text-3xl p-3"
         >
           close
-        </div>
+        </button>
       </m.div>
     </m.li>
   )

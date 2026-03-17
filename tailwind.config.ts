@@ -11,6 +11,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        custom: {
+          white: "#FAFAF9",
+        },
         beige: {
           300: "#EADBBD",
         },

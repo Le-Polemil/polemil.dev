@@ -10,11 +10,13 @@ export default function Timeline({
   children,
   beforeLength = "w-40",
   containerClassName,
+  moreInfos,
 }: {
   rgbGradient?: string
   children: ReactNode
   beforeLength?: string
   containerClassName?: string
+  moreInfos?: ReactNode
 }) {
   return (
     <m.div
@@ -30,13 +32,22 @@ export default function Timeline({
       <ol
         className={cN(
           containerClassName,
-          "flex flex-col lg:flex-row text-stone-800 transition-all duration-1000 snap-x snap-mandatory w-full"
+          "flex-[2] flex flex-col 3xl:flex-row text-stone-800 transition-all duration-1000 snap-x snap-mandatory w-full"
         )}
       >
         <m.li variants={fadeInItem} className={cN(beforeLength, "relative")} />
 
         {children}
       </ol>
+
+      <div className="hidden lg:flex flex-col flex-1 p-8 overflow-hidden align-center">
+        <div className="bg-custom-white p-4 w-full">
+          {moreInfos}
+        </div>
+        {/* <div className="text-sm text-stone-800">{children}</div> */}
+
+        <div className="flex-1" />
+      </div>
     </m.div>
   )
 }

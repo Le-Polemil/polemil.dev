@@ -9,6 +9,12 @@ export enum Colors {
   WHITE = "white",
 }
 
+export enum Sizes {
+  SMALL = "small",
+  MEDIUM = "medium",
+  LARGE = "large",
+}
+
 interface IButton
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
   children?: ReactNode
@@ -19,6 +25,7 @@ interface IButton
   borderless?: boolean
   noPressAnim?: boolean
   padding?: string
+  size?: Sizes
 }
 
 const BUTTON_COLOR = {
@@ -68,6 +75,16 @@ const SHADOW_COLOR = {
   [Colors.PURPLISH]: "after:border-purplish-800",
   [Colors.WHITE]: "after:border-stone-300",
 }
+const FONT_SIZE = {
+  [Sizes.SMALL]: "text-sm md:text-md",
+  [Sizes.MEDIUM]: "text-lg md:text-xl",
+  [Sizes.LARGE]: "text-2xl md:text-3xl",
+}
+const PADDING = {
+  [Sizes.SMALL]: "px-2 py-1 md:px-3 md:py-1.5",
+  [Sizes.MEDIUM]: "px-3 py-2 md:px-5 md:py-2.5",
+  [Sizes.LARGE]: "px-4 py-3 md:px-6 md:py-3.5",
+}
 
 export default function Button({
   children,
@@ -79,6 +96,7 @@ export default function Button({
   noPressAnim = false,
   padding,
   className,
+  size = Sizes.MEDIUM,
   ...otherProps
 }: IButton) {
   return (
@@ -86,8 +104,9 @@ export default function Button({
       {...otherProps}
       className={cN(
         "flex justify-center items-center outline-none hover:shadow-lg active:shadow-sm",
-        "font-archivo transition-all text-lg md:text-xl",
-        padding ?? "px-3 py-2 md:px-5 md:py-2.5",
+        "font-archivo transition-all",
+        FONT_SIZE[size],
+        padding ?? PADDING[size],
         !borderless && "border-4",
         rounded && "rounded-lg after:rounded-lg",
         !noPressAnim && "active:translate-y-0.5",
