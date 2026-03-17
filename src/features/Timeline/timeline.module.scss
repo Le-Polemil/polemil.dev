@@ -33,6 +33,7 @@
     li {
       --gradient-percent-1: 0%;
       --gradient-percent-2: 0%;
+      --hatched-step: 6px;
 
       &:before {
         content: "";
@@ -46,7 +47,7 @@
           rgb(250 250 249) var(--gradient-percent-2)
         );
 
-        transition: --gradient-percent-1 0.5s, --gradient-percent-2 1s;
+        transition: --gradient-percent-1 0.5s, --gradient-percent-2 1s, color 0.5s;
         width: var(--stroke-weight);
       }
 
@@ -55,6 +56,22 @@
         --gradient-percent-1: 100%;
         --gradient-percent-2: 140%;
         transition: --gradient-percent-1 1s, --gradient-percent-2 0.5s;
+      }
+
+      &.hatched {
+        &:not(.active):before {
+          color: white;
+        }
+      
+        &:before {
+          background-image: repeating-linear-gradient(
+            -45deg,
+            currentColor,
+            currentColor var(--hatched-step),
+            transparent var(--hatched-step),
+            transparent calc(var(--hatched-step) * 2)
+          );          
+        }
       }
 
       .dot {
@@ -85,12 +102,12 @@
 }
 
 /* VERTICAL */
-@media screen and (width < 1024px) {
+@media screen and (width < 1780px) {
   .timeline {
     width: 100%;
     min-height: 20rem;
     margin: 0;
-    flex-direction: column;
+    // flex-direction: column;
 
     li {
       .dot {
@@ -113,7 +130,7 @@
           align-items: center;
           justify-content: center;
 
-          > div {
+          > button, > div {
             display: none;
           }
 
@@ -134,6 +151,14 @@
           margin-top: -4px;
           cursor: pointer;
         }
+
+        &:before {
+          background-image: linear-gradient(
+            180deg,
+            currentColor var(--gradient-percent-1),
+            rgb(250 250 249) var(--gradient-percent-2)
+        );
+        }
       }
     }
   }
@@ -141,7 +166,7 @@
   @media (width > 400px) {
     .timeline {
       --stroke-weight: 0.5rem;
-      --dot-width: 1.75rem !important;
+      --dot-width: 1.75rem;
       padding: 0 0 0 5vw;
 
       li {
@@ -155,10 +180,14 @@
       }
     }
   }
+  @media (width > 1024px) {
+    .timeline {
+    }
+  }
 }
 
 /* HORIZONTAL */
-@media screen and (width >= 1024px) {
+@media screen and (width >= 1780px) {
   .timeline {
     --stroke-weight: 0.5rem;
     --dot-width: 1.25rem;
@@ -187,7 +216,7 @@
 
       &:before,
       &:after {
-        content: "";
+        // content: "";
         position: absolute;
         top: 0;
         bottom: 0;
