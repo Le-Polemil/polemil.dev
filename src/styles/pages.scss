@@ -13,12 +13,12 @@
 
   /* prettier-ignore */
   --base:
-  	"pagetitle pagetitle" minmax(4rem, auto)
+  	"pagetitle pagetitle" minmax(2rem, auto)
   	"photo     .        "
   	"photo     name     "
-    "digest    digest   " 1fr
-    "mailBtn   mailBtn  "
-    "stats     stats    "
+    "digest    digest   " auto
+    "mailBtn   mailBtn  " auto
+    "stats     stats    " 1fr
   / auto 1fr;
 
   /* prettier-ignore */

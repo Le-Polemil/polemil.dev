@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# polemil.dev
 
-## Getting Started
+My personal portfolio — a colorful, animated, interactive website built to showcase who I am, what I do, and what I love.
 
-First, run the development server:
+**[polemil.dev](https://polemil.dev)**
+
+## What's inside
+
+The site is split into distinct, color-coded sections that you navigate through like pages of a book:
+
+- **Profile** — a quick intro with an interactive profile card
+- **Projects** — a carousel of things I've built, with live links and tech breakdowns
+- **Timeline** — my professional journey from agency work to freelance
+- **Stack** — technologies, know-how, and soft skills organized in filterable tabs
+- **Hobbies** — a circular carousel of the things I enjoy outside of code (worldbuilding, writing, music, drawing, cooking...)
+- **Contact** — a form to reach me directly
+
+Every page has its own personality — background color, layout, and animations.
+
+## Built with
+
+- **Next.js 14** + **TypeScript** + **React 18**
+- **Tailwind CSS** + **SCSS** for styling
+- **Framer Motion** for page transitions and micro-interactions
+- **Lottie** for playful illustrated animations
+- **Apollo Client** + **GraphQL** to fetch content from a custom backend
+- **i18next** for internationalization (FR / EN / RU) with localStorage caching (stale-while-revalidate)
+- **React Slick** + **React Swipeable** for carousels and touch gestures
+
+## Highlights
+
+- Smooth page transitions with staggered animations
+- Swipe navigation on mobile
+- Hover effects everywhere — bubble bursts, tilt-shake, rotating borders, floating icons
+- Fully responsive with a mobile-first approach
+- Content served from a custom GraphQL API at `graphql.polemil.dev`
+
+## i18n caching
+
+Translations are fetched from the API and cached in the browser's localStorage via `i18next-chained-backend` + `i18next-localstorage-backend`. On subsequent visits, cached translations are served instantly while the app revalidates in the background after 24 hours.
+
+To clear the cache manually, remove `i18next_res_*` keys from localStorage in DevTools.
+
+## Running locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Author
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Polémil Moreau** — Front-end developer, freelance  
+[polemil.dev](https://polemil.dev)

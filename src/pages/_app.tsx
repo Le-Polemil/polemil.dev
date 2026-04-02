@@ -1,13 +1,16 @@
 import { ApolloProvider } from "@apollo/client"
 import { AnimatePresence, motion as m } from "framer-motion"
 import i18n from "i18next"
-import Backend from "i18next-http-backend"
+import ChainedBackend from "i18next-chained-backend"
+import HttpBackend from "i18next-http-backend"
+import LocalStorageBackend from "i18next-localstorage-backend"
 import { AppProps } from "next/app"
 import Head from "next/head"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 import { initReactI18next } from "react-i18next"
 
-import client from "@/apollo"
+import { initApolloClient } from "@/apollo"
 import usePreviousRoute from "@/hooks/usePreviousRoute"
 import { API_URL, AUTHOR, cN, SITE_DESCRIPTION, THUMBNAIL_URL } from "@/lib"
 import { IPageProps } from "@/types"
@@ -25,7 +28,7 @@ import "@/styles/transitions.scss"
 import "@fontsource/material-icons-rounded"
 
 i18n
-  .use(Backend)
+  .use(ChainedBackend)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     lng: "fr", // if you're using a language detector, do not define the lng option
@@ -36,13 +39,28 @@ i18n
     },
 
     backend: {
-      loadPath: `${API_URL}/i18n/{{lng}}`,
-      crossDomain: true,
+      backends: [LocalStorageBackend, HttpBackend],
+      backendOptions: [
+        {
+          expirationTime: 24 * 60 * 60 * 1000, // 24h cache
+        },
+        {
+          loadPath: `${API_URL}/i18n/{{lng}}`,
+          crossDomain: true,
+        },
+      ],
     },
   })
 
 function MyApp({ Component, pageProps, router }: AppProps<IPageProps>) {
   const previousRoute = usePreviousRoute()
+  const [client, setClient] = useState<Awaited<ReturnType<typeof initApolloClient>>>()
+
+  useEffect(() => {
+    initApolloClient().then(setClient)
+  }, [])
+
+  if (!client) return null
 
   return (
     <ApolloProvider client={client}>
@@ -119,7 +137,7 @@ function MyApp({ Component, pageProps, router }: AppProps<IPageProps>) {
           </AnimatePresence>
         </div>
 
-        <div className="flex items-center gap-x-12 lg:w-full absolute left-0 right-0 bottom-0 lg:sticky z-30 mb-4 lg:mb-0">
+        <div className="flex items-center gap-x-12 lg:w-full absolute left-0 right-0 bottom-0 lg:sticky z-30 mb-4 md:mb-2 lg:mb-0">
           <Logo className="hidden lg:flex" />
           <div className="flex-1">
             <Tabs />

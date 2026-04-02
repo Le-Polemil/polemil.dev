@@ -36,7 +36,7 @@ export default function Tab({
     >
       <Link
         href={url}
-        className="py-2 px-4 md:gap-2 flex-1 flex flex-col xl:flex-row items-center justify-center"
+        className="py-1 lg:py-2 px-4 md:gap-2 flex-1 flex flex-col xl:flex-row items-center justify-center"
         tabIndex={index + 1}
       >
         <span className="material-icons group-hover:tilt-shake text-2xl lg:text-4xl">
