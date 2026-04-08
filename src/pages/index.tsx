@@ -24,9 +24,9 @@ export default function Profile({ previousRoute }: IPageProps) {
         initial="hidden"
         animate="show"
         className={cN(
-          "grid gap-x-6 md:gap-x-10 gap-y-4 lg:gap-y-8 2xl:gap-y-10",
+          "grid gap-x-6 md:gap-x-10 gap-y-2 sm:gap-y-4 lg:gap-y-8 2xl:gap-y-10",
           "template-[base] sm:template-[sm] lg:template-[lg] 2xl:template-[2xl]",
-          "px-8 lg:px-[8vw] 2xl:px-[5rem] pb-8",
+          "px-4 sm:px-8 lg:px-[8vw] 2xl:px-[5rem] pb-8",
           "h-full overflow-y-auto no-scrollbar"
         )}
       >

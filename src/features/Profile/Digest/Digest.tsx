@@ -16,7 +16,7 @@ export default function Digest({ className }: WithClassNameProps) {
       className={cN(
         className,
         "self-center sm:justify-center gap-2",
-        "font-rubikReg font-semibold text-xl md:text-2xl lg:text-3xl text-left mb-auto lg:mb-0"
+        "font-rubikReg font-semibold text-base sm:text-xl md:text-2xl lg:text-3xl text-left mb-auto lg:mb-0"
       )}
     >
       <m.h2
@@ -53,7 +53,7 @@ export default function Digest({ className }: WithClassNameProps) {
           informatique
         </m.div>
       </div>
-      <Feat.Links className="order-6 mt-8 mb-4 sm:mb-0 lg:mt-4" />
+      <Feat.Links className="order-6 mt-4 sm:mt-8 mb-4 sm:mb-0 lg:mt-4" />
       {/* <m.div
         variants={fadeInItem}
         className="order-2 lg:order-5 group-hover:push-forward mb-6 lg:mb-0"

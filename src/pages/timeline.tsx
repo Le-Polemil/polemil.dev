@@ -42,8 +42,16 @@ const TMP_DATA = [
     id: "freelance",
     title: "Août 2023",
     subTitle: "Freelance",
-    length: "h-60 lg:h-52 lg:w-40",
+    length: "h-32 lg:h-52 lg:w-40",
     children: ["Nouvelle aventure ! Je me lance en freelance."],
+  },
+  {
+    id: "elao",
+    title: "Octobre 2024",
+    subTitle: "Lead développeur front-end",
+    length: "h-56 lg:h-52 lg:w-40",
+    children: ["J’intègre Elao et travaille sur plusieurs apps front (React, Astro) : santé, suivi du temps et usine à sites.",
+    "En parallèle, j’améliore le workflow design→dev grâce aux nouveaux outils IA (MCP Figma, Skills) et rédige des articles sur l’évolution du CSS."],
   },
 ]
 

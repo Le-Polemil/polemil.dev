@@ -6,7 +6,7 @@ export const AUTHOR = {
   email: "contact@polemil.dev",
   url: "https://polemil.dev",
 }
-export const SITE_DESCRIPTION = `De son vrai nom ${AUTHOR.firstname} ${AUTHOR.lastname}, Polémil est un développeur Web Full-Stack spécialisé en React / TypeScript. Actuellement disponible pour vos offres de dev, voici mon CV en ligne. Découvrez mes compétences, mes projets, et mon parcours professionnel.`
+export const SITE_DESCRIPTION = `De son vrai nom ${AUTHOR.firstname} ${AUTHOR.lastname}, Polémil est un développeur Web Front-End spécialisé en React / TypeScript. Actuellement disponible pour vos offres de dev, voici mon CV en ligne. Découvrez mes compétences, mes projets, et mon parcours professionnel.`
 
 export const BO_URL = "https://bo.polemil.dev"
 export const API_URL = BO_URL + "/api"

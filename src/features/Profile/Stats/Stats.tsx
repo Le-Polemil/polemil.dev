@@ -10,7 +10,7 @@ export default function Stats({ className }: WithClassNameProps) {
       variants={fadeInItem}
       className={cN(
         "stats grid template-[stats] lg:template-[stats-lg] w-full max-h-full lg:gap-x-12",
-        "pl-6 sm:px-[clamp(0rem,10vw,5rem)] lg:px-0 gap-y-6",
+        "pl-6 sm:px-[clamp(0rem,10vw,5rem)] lg:px-0 gap-y-3 sm:gap-y-6",
         className
       )}
     >

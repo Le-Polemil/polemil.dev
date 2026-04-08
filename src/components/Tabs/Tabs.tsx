@@ -34,7 +34,7 @@ export default function Tabs() {
       animate="show"
       className={cN(
         "tabs lg:px-8 shadow-around",
-        "flex lg:gap-x-12 justify-evenly lg:justify-between"
+        "flex lg:gap-x-0 justify-evenly lg:justify-between"
       )}
       {...swipeHandlers}
     >
