@@ -37,6 +37,7 @@ export default function Links({ className }: WithClassNameProps) {
         ref={ref}
         variants={fadeInItem}
         href={CV_URL}
+        rel="nofollow noopener noreferrer"
         target="_blank"
         className={cN(
           "relative group flex items-center justify-center w-full md:w-auto",
