@@ -45,7 +45,7 @@ i18n
           expirationTime: 24 * 60 * 60 * 1000, // 24h cache
         },
         {
-          loadPath: `${API_URL}/i18n/{{lng}}`,
+          loadPath: `${API_URL}/translations/{{lng}}`,
           crossDomain: true,
         },
       ],
