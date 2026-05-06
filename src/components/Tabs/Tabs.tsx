@@ -1,6 +1,5 @@
 import { motion as m } from "framer-motion"
 import { usePathname } from "next/navigation"
-import { useTranslation } from "react-i18next"
 
 import { container } from "@/animations/pageContainer"
 import useTabs from "@/hooks/useTabs"
@@ -11,13 +10,12 @@ import Tab from "../Tab"
 
 export default function Tabs() {
   const pathname = usePathname()
-  const [t] = useTranslation()
 
   const { loading, tabs, currentTab, previousTab, nextTab } = useTabs()
-  const currentTabOrder = currentTab?.attributes?.order
+  const currentTabOrder = currentTab?.order
 
-  const previousTabUrl = previousTab?.attributes?.url,
-    nextTabUrl = nextTab?.attributes?.url
+  const previousTabUrl = previousTab?.url
+  const nextTabUrl = nextTab?.url
 
   const { push } = useRouter()
   const swipeHandlers = useSwipeable({
@@ -38,9 +36,8 @@ export default function Tabs() {
       )}
       {...swipeHandlers}
     >
-      {tabs.map(({ attributes }) => {
-        if (!attributes) return null
-        const { key, order, url, icon } = attributes
+      {tabs.map((tab) => {
+        const { key, order, url, icon, label } = tab
 
         const minimalDiff = findMinimalDiff(tabs, currentTabOrder ?? 0, order)
         const absoluteDiff = Math.abs(minimalDiff)
@@ -63,7 +60,7 @@ export default function Tabs() {
                 : "text-stone-800 hover:text-stone-200"
             )}
             icon={icon}
-            text={t(`tab.v2.${key}`, t(`tab.${key}`))}
+            text={label}
           />
         )
       })}

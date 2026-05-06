@@ -1,76 +1,61 @@
 import { gql } from "@apollo/client"
 
-export interface JobsDataType {
-  educations: {
-    data: [
-      {
-        id: string
-        attributes: {
-          grade: string
-          name: string
-          yearStart: number
-          yearEnd: number
-          school: string
-          city: string
-        }
-      }
-    ]
-  }
-  jobs: {
-    data: [
-      {
-        id: string
-        attributes: {
-          key: string
-          title: string
-          missions: [
-            {
-              id: string
-              key: string
-            }
-          ]
-          company: string
-          companyDetails: string
-          dateStart: Date
-          dateEnd: Date
-        }
-      }
-    ]
-  }
+export interface EducationType {
+  documentId: string
+  key: string
+  grade: string
+  name: string
+  yearStart: number
+  yearEnd: number
+  school: string
+  city: string
+}
+
+export interface JobMissionType {
+  id: string
+  text: string
+}
+
+export interface JobType {
+  documentId: string
+  key: string
+  title: string
+  missions: JobMissionType[]
+  company: string
+  companyDetails: string
+  dateStart: string
+  dateEnd: string
+}
+
+export interface TimelineDataType {
+  educations: EducationType[]
+  jobs: JobType[]
 }
 
 export const GET_TIMELINE = gql`
-  query findEducations {
-    educations {
-      data {
-        id
-        attributes {
-          grade
-          name
-          yearStart
-          yearEnd
-          school
-          city
-        }
-      }
+  query findTimeline($locale: I18NLocaleCode) {
+    educations(locale: $locale, sort: "yearStart:desc") {
+      documentId
+      key
+      grade
+      name
+      yearStart
+      yearEnd
+      school
+      city
     }
-  }
-  query findJobs {
-    jobs {
-      data {
+    jobs(locale: $locale, sort: "dateStart:desc") {
+      documentId
+      key
+      title
+      missions {
         id
-        attributes {
-          title
-          missions {
-            id
-            key
-          }
-          company
-          companyDetails
-          dateStart
-          dateEnd
-        }
+        text
       }
+      company
+      companyDetails
+      dateStart
+      dateEnd
     }
   }
 `

@@ -1,0 +1,196 @@
+{
+  "projects": {
+    "paused": "Paused",
+    "ongoing": "Ongoing",
+    "done": "Done",
+    "bhuumi": {
+      "dates": "Waiting for the first book"
+    },
+    "boardgame": {
+      "dates": "2025 →"
+    },
+    "colibri": {
+      "dates": "2025 →"
+    },
+    "viewtransition": {
+      "dates": "2025"
+    },
+    "ansara": {
+      "dates": "2026 →"
+    },
+    "cockpit360": {
+      "dates": "2025 →"
+    },
+    "miooz": {
+      "dates": "2024 →"
+    },
+    "panneaupocket": {
+      "dates": "2025 →"
+    },
+    "sunzil": {
+      "dates": "2025 →"
+    },
+    "unaya": {
+      "dates": "2025 →"
+    },
+    "cssarticles": {
+      "dates": "2024 →"
+    },
+    "cv2": {
+      "dates": "Août 2024 - Aujourd'hui"
+    },
+    "cultura": {
+      "dates": "Octobre 2021 - Janvier 2023"
+    },
+    "makeorg": {
+      "dates": "Juin 2021 - Aout 2021"
+    },
+    "medicofi": {
+      "dates": "Octobre 2019 - Décembre 2020"
+    },
+    "cgt": {
+      "dates": "Décembre 2020 - Mars 2021"
+    },
+    "artprice": {
+      "dates": "Mai 2018 - Octobre 2019"
+    },
+    "langs": {
+      "dates": "Avant 2028 ? "
+    },
+    "krowns": {
+      "dates": "Projet en cours de développement"
+    },
+    "meetup": {
+      "dates": "Février 2020"
+    },
+    "books": {
+      "dates": "Depuis 2023"
+    },
+    "mao": {
+      "dates": "Occasionnellement"
+    },
+    "tcg": {
+      "dates": "Débuté en octobre 2019"
+    },
+    "drawing": {
+      "dates": "Depuis mes 6 ans"
+    }
+  },
+  "common": {
+    "today": "Today",
+    "or": "or",
+    "and": "and",
+    "with": "with"
+  },
+  "profile": {
+    "info": {
+      "age": "24 y.o.",
+      "address": {
+        "0": "Normandy",
+        "1": "France"
+      }
+    },
+    "langs": {
+      "fr": "Native",
+      "en": "Confirmed",
+      "ru": "Notions"
+    },
+    "available": {
+      "false": "I'm already pretty busy!",
+      "true": "Currently available for full remote assignments!",
+      "yes": {
+        "0": "Currently available",
+        "for": "for your projects, freelance or full-time"
+      }
+    },
+    "digest": {
+      "xp": {
+        "0": "After getting my",
+        "1": "bachelor degree",
+        "2": " in computer science. I've been working as a web developer for the",
+        "3": "5 lasts years"
+      }
+    },
+    "favStack": {
+      "0": "My favorite stack :"
+    },
+    "favFramework": {
+      "0": "is my favorite framework, but I've already had to deal with both"
+    },
+    "expert": {
+      "1": "Expert"
+    },
+    "photo": {
+      "floki": "And there it's Flо́ki !",
+      "me": "This is me :)"
+    },
+    "stack": {
+      "other": "Other techs I know well",
+      "prefered": "My favorite stack"
+    },
+    "title": "Need a dev",
+    "xp": {
+      "webdev": {
+        "0": "Web developer",
+        "1": "Confirmed"
+      },
+      "years": {
+        "0": "6 years of exp",
+        "1": "erience"
+      }
+    }
+  },
+  "contact": {
+    "email": {
+      "btn": "Copy my email",
+      "text": "Also, you could just send me a mail !",
+      "copied": "Copied !"
+    },
+    "me": "Contact me"
+  },
+  "versioning": {
+    "github": "Github",
+    "bitbucket": "Bitbucket",
+    "gitlab": "Gitlab"
+  },
+  "method": {
+    "scrum": "SCRUM",
+    "kanban": "KANBAN"
+  },
+  "os": {
+    "windows": "Windows",
+    "mac": "MacOS",
+    "linux": "Ubuntu"
+  },
+  "softSkills": {
+    "groupWork": "Working in teams of all sizes",
+    "communication": "Communicate with colleagues",
+    "adaptNeeds": "Adapt to your needs",
+    "steppingBack": "Stepping back",
+    "rigorousAndPrecise": "To be rigorous and precise",
+    "drivingForce": "To be a driving force",
+    "versatile": "To be versatile",
+    "autonomous": "To be autonomous",
+    "creative": "To be creative and inventive"
+  },
+  "timeline": {
+    "hire": {
+      "me": "Hire me"
+    },
+    "whats": {
+      "next": "My next project ?"
+    }
+  },
+  "knowHow": {
+    "develop": {
+      "showcaseWebsite": "Développer un site vitrine",
+      "eshop": "Développer un site marchand",
+      "backoffice": "Développer un backoffice",
+      "dashboard": "Développer un dashboard",
+      "internApp": "Développer une app interne",
+      "mobileApp": "Développer une app mobile"
+    },
+    "maintainAndEvolveProject": "Maintenir et faire évoluer un projet",
+    "masteriseLogicLayer": "Maitriser la couche métier d'un projet"
+  }
+}

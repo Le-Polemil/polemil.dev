@@ -1,85 +1,70 @@
 import { gql } from "@apollo/client"
 import { type ImageDataType } from "."
 
-export interface ProjectSkillDataType {
-  attributes: {
-    key: string
-    level: string
-  }
+export interface ProjectSkillRefType {
+  documentId: string
+  key: string
+  name: string
+  level: string | null
+}
+
+export interface ProjectType {
+  documentId: string
+  order: number
+  key: string
+  name: string
+  subTitle?: string | null
+  description?: string | null
+  details?: string | null
+  dateInfos?: string | null
+  link?: string | null
+  githubLink?: string | null
+  isPaused?: boolean
+  isDone?: boolean
+  isDev?: boolean
+  skills?: ProjectSkillRefType[]
+  image: ImageDataType | null
 }
 
 export interface ProjectsDataType {
-  projects: {
-    data: [
-      {
-        id: string
-        attributes: {
-          order: number
-          name: string
-          description: string
-          subTitle?: string
-          dates?: string
-          link?: string
-          githubLink?: string
-          isPaused?: boolean
-          isDone?: boolean
-          isDev?: boolean
-
-          skills?: {
-            data: ProjectSkillDataType[]
-          }
-
-          image: {
-            data: ImageDataType
-          }
-        }
-      }
-    ]
-  }
+  projects: ProjectType[]
 }
 
 export const GET_PROJECTS = gql`
-  query findProjects {
+  query findProjects($locale: I18NLocaleCode) {
     projects(
       sort: "order"
       filters: { order: { gte: 0 } }
       pagination: { limit: 50 }
+      locale: $locale
     ) {
-      data {
-        id
-        attributes {
-          order
-          name
-          subTitle
-          description
-          dates
-          link
-          isPaused
-          isDone
-          isDev
-          githubLink
-          skills {
-            data {
-              attributes {
-                key
-                level
-              }
-            }
-          }
-
-          image {
-            data {
-              attributes {
-                name
-                alternativeText
-                width
-                height
-                caption
-                url
-              }
-            }
-          }
-        }
+      documentId
+      order
+      key
+      name
+      subTitle
+      description
+      details
+      dateInfos
+      link
+      githubLink
+      isPaused
+      isDone
+      isDev
+      skills {
+        documentId
+        key
+        name
+        level
+      }
+      image {
+        documentId
+        name
+        alternativeText
+        width
+        height
+        caption
+        url
       }
     }
   }

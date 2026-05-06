@@ -14,14 +14,16 @@ import Title from "@/components/Title"
 import Feat from "@/features/Projects"
 
 export default function Projects({ previousRoute }: IPageProps) {
-  const [t] = useTranslation()
+  const { i18n } = useTranslation()
   const [index, setIndex] = useState(0)
 
-  const { data, loading } = useQuery<ProjectsDataType>(GET_PROJECTS)
-  const projects = data?.projects?.data ?? []
+  const { data, loading } = useQuery<ProjectsDataType>(GET_PROJECTS, {
+    variables: { locale: i18n.language },
+  })
+  const projects = data?.projects ?? []
 
-  const { name, subTitle, skills, link, githubLink } =
-    projects?.[index]?.attributes ?? {}
+  const current = projects[index]
+  const { name, subTitle, skills, link, githubLink } = current ?? {}
 
   return (
     <PageTransition
@@ -53,30 +55,29 @@ export default function Projects({ previousRoute }: IPageProps) {
             <Title.h1 className="font-bukhari text-4xl md:text-6xl lg:text-6xl text-stone-50">
               {index + 1 > 9 ? index + 1 : `0${index + 1}`}.
             </Title.h1>
-            <Title.h1 className="portrait:hidden" text={t(name)} />
+            <Title.h1 className="portrait:hidden" text={name ?? ""} />
           </div>
-          <Title.h3 className="portrait:hidden" text={t(subTitle ?? "")} />
+          <Title.h3 className="portrait:hidden" text={subTitle ?? ""} />
         </m.div>
 
         <Feat.Details className="area-[desc]" index={index} />
 
         <Feat.Carousel
           className="area-[image]"
-          cards={projects?.map(({ attributes }) => ({
-            title: attributes?.name,
-            description: attributes?.description,
-            image: {
-              ...attributes?.image?.data?.attributes,
-              url: BO_URL + attributes?.image?.data?.attributes?.url,
-            },
+          cards={projects.map((project) => ({
+            title: project.name,
+            description: project.description ?? "",
+            image: project.image
+              ? { ...project.image, url: BO_URL + project.image.url }
+              : undefined,
           }))}
           index={index}
           setIndex={setIndex}
-          link={link}
-          githubLink={githubLink}
+          link={link ?? undefined}
+          githubLink={githubLink ?? undefined}
         />
 
-        {!!skills?.data?.length && (
+        {!!skills?.length && (
           <m.div
             variants={fadeInItem}
             className="area-[skills] border-t-2 border-stone-800 pt-4 2xl:my-6 w-full overflow-hidden"
@@ -85,22 +86,20 @@ export default function Projects({ previousRoute }: IPageProps) {
               variants={fadeInItem}
               className="infinite-roller text-xl text-stone-50 min-h-8"
             >
-              {skills?.data?.map?.(
-                ({ attributes: { key, level } = {} }, index, arr) => (
-                  <div
-                    key={key}
-                    className="inline-block text-lg md:text-2xl lg:text-3xl whitespace-nowrap min-w-28 md:min-w-44"
-                    style={
-                      {
-                        "--index": index,
-                        "--itemsCount": arr?.length,
-                      } as CSSProperties
-                    }
-                  >
-                    {t(key ?? "")}
-                  </div>
-                )
-              )}
+              {skills.map((skill, idx, arr) => (
+                <div
+                  key={skill.documentId}
+                  className="inline-block text-lg md:text-2xl lg:text-3xl whitespace-nowrap min-w-28 md:min-w-44"
+                  style={
+                    {
+                      "--index": idx,
+                      "--itemsCount": arr.length,
+                    } as CSSProperties
+                  }
+                >
+                  {skill.name}
+                </div>
+              ))}
             </m.div>
           </m.div>
         )}

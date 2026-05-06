@@ -1,10 +1,9 @@
 export interface ImageDataType {
-  attributes: {
-    name: string
-    alternativeText?: string
-    width: number
-    height: number
-    caption?: string
-    url: string
-  }
+  documentId: string
+  name: string
+  alternativeText?: string | null
+  width: number
+  height: number
+  caption?: string | null
+  url: string
 }

@@ -13,13 +13,15 @@ interface IDetails {
 }
 
 export default function Details({ className, index }: IDetails) {
-  const [t] = useTranslation()
+  const { i18n } = useTranslation()
 
-  const { data, loading } = useQuery<ProjectsDataType>(GET_PROJECTS)
-  const projects = data?.projects?.data ?? []
+  const { data, loading } = useQuery<ProjectsDataType>(GET_PROJECTS, {
+    variables: { locale: i18n.language },
+  })
+  const projects = data?.projects ?? []
 
-  const { name, description, skills, dates, subTitle, link, githubLink } =
-    projects?.[index]?.attributes ?? {}
+  const project = projects[index]
+  const { name, description, dateInfos, subTitle } = project ?? {}
 
   return (
     <AnimatePresence>
@@ -35,22 +37,22 @@ export default function Details({ className, index }: IDetails) {
         )}
       >
         <m.div className="hidden portrait:block" variants={fadeInItemRapid}>
-          <Title.h1 text={t(name)} />
+          <Title.h1 text={name ?? ""} />
         </m.div>
         <m.div className="hidden portrait:block" variants={fadeInItemRapid}>
-          <Title.h3 text={t(subTitle ?? "")} />
+          <Title.h3 text={subTitle ?? ""} />
         </m.div>
         {/* TODO : Chips isDev / isPaused / isDone */}
 
         <m.time variants={fadeInItemRapid} className="text-stone-50 text-xl">
-          {t(dates ?? "")}
+          {dateInfos ?? ""}
         </m.time>
 
         <m.p
           variants={fadeInItemRapid}
           className="text-sm sm:text-base 2xl:text-xl md:mb-6"
         >
-          {t(description)}
+          {description ?? ""}
         </m.p>
       </m.div>
     </AnimatePresence>
