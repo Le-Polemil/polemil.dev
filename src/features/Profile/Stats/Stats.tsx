@@ -17,21 +17,21 @@ export default function Stats({ className }: WithClassNameProps) {
       <Stat
         href="/timeline"
         countClassName="after:!text-indigo-400"
-        count={6}
+        count={8}
         text="ans d'expérience"
         className="area-[s1]"
       />
       <Stat
         href="/projects"
         countClassName="after:!text-purplish-600"
-        count={14}
+        count={20}
         text="projets web"
         className="area-[s2]"
       />
       <Stat
         href="/stack"
         countClassName="after:!text-blue-500"
-        count={22}
+        count={23}
         text="technos domptées"
         className="area-[s3]"
       />
