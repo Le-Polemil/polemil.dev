@@ -27,13 +27,15 @@ export default function Card({
       }}
     >
       <div className={cN("area-[img/overlap]", imgContainerClassName)}>
-        <Image
-          src={image.url}
-          alt={image?.alternativeText ?? image.name}
-          className="object-cover rounded-lg w-full h-full"
-          width={image.width}
-          height={image.height}
-        />
+        {image?.url && image.width && image.height && (
+          <Image
+            src={image.url}
+            alt={image.alternativeText ?? image.name ?? ""}
+            className="object-cover rounded-lg w-full h-full"
+            width={image.width}
+            height={image.height}
+          />
+        )}
       </div>
       {(title || description) && !noOverlay && (
         <section className="area-[overlap] flex flex-col text-stone-50 bg-stone-900 z-10 bg-blend-multiply">
