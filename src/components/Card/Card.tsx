@@ -3,7 +3,7 @@ import { type ICard } from "@/types"
 import Image from "next/image"
 
 interface ICardProps {
-  image: ICard["image"]
+  image?: ICard["image"]
   title?: ICard["title"]
   description?: ICard["description"]
   className?: string
