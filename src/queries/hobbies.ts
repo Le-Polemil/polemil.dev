@@ -1,48 +1,34 @@
 import { gql } from "@apollo/client"
+import { type ImageDataType } from "."
+
+export interface HobbyType {
+  documentId: string
+  key: string
+  name: string
+  description: string
+  icon: string
+  media: ImageDataType | null
+}
 
 export interface HobbiesDataType {
-  hobbies: {
-    data: [
-      {
-        id: string
-        attributes: {
-          name: string
-          description: string
-          icon: string
-          media: {
-            data: {
-              id: string
-              attributes: {
-                url: string
-                name: string
-              }
-            }
-          }
-        }
-      }
-    ]
-  }
+  hobbies: HobbyType[]
 }
 
 export const GET_HOBBIES = gql`
-  query findHobbies {
-    hobbies {
-      data {
-        id
-        attributes {
-          name
-          description
-          icon
-          media {
-            data {
-              id
-              attributes {
-                url
-                name
-              }
-            }
-          }
-        }
+  query findHobbies($locale: I18NLocaleCode) {
+    hobbies(locale: $locale) {
+      documentId
+      key
+      name
+      description
+      icon
+      media {
+        documentId
+        url
+        name
+        alternativeText
+        width
+        height
       }
     }
   }

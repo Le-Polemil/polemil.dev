@@ -42,7 +42,7 @@ export default function Contact({ previousRoute }: IPageProps) {
   const [mutate, { data, loading, called }] =
     useMutation<ContactDataType>(CONTACT_ME)
 
-  const id = data?.createContact?.data?.id
+  const id = data?.createContact?.documentId
 
   useEffect(() => {
     if (called && !loading && data) {

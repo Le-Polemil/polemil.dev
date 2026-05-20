@@ -1,27 +1,23 @@
 import { container, fadeInItemRapid } from "@/animations/pageContainer"
 import Title from "@/components/Title"
 import { cN } from "@/lib"
-import { type SkillCategoryDataType } from "@/queries/stack"
+import { type SkillCategoryType } from "@/queries/stack"
 import { AnimatePresence, motion as m } from "framer-motion"
 import { Fragment } from "react"
-import { useTranslation } from "react-i18next"
 
 interface ITechs {
-  data: SkillCategoryDataType
+  data: SkillCategoryType | undefined
   className?: string
 }
 
 const seeMoreClass = cN(
   "relative cursor-pointer w-10 h-10 md:w-10 md:h-10",
   "text-stone-50 hover:text-stone-800 transition-colors"
-  // before:border-4 before:border-dashed before:border-current before:transition-transform before:rounded-full hover:before:rotate-[270deg]"
 )
 
 const DEFAULT_VISIBLE_COUNT = 4
 
 export default function Techs({ className, data }: ITechs) {
-  const [t] = useTranslation()
-
   return (
     <div
       className={cN(
@@ -29,22 +25,22 @@ export default function Techs({ className, data }: ITechs) {
         className
       )}
     >
-      {data?.attributes?.subCategories.map((subCategory) => (
-        <AnimatePresence key={subCategory?.id}>
+      {data?.subCategories.map((subCategory) => (
+        <AnimatePresence key={subCategory.id}>
           <m.div
             variants={container}
             initial="hidden"
             animate="show"
             exit="hidden"
-            key={subCategory?.id}
+            key={subCategory.id}
           >
-            <Title.h3 className="mb-4" text={t(subCategory?.name)} />
+            <Title.h3 className="mb-4" text={subCategory.name} />
 
             <div className="flex flex-wrap gap-4">
-              {subCategory?.skills?.data?.map?.((skill, index, arr) => (
-                <Fragment key={skill?.attributes?.key}>
+              {subCategory.skills.map((skill, index, arr) => (
+                <Fragment key={skill.documentId}>
                   <m.span
-                    key={skill?.attributes?.key}
+                    key={skill.documentId}
                     variants={fadeInItemRapid}
                     className={cN(
                       "group relative whitespace-nowrap",
@@ -59,15 +55,15 @@ export default function Techs({ className, data }: ITechs) {
                         "after:absolute after:inset-0 after:border-b-4 after:border-r-4 after:border-stone-200 after:rounded-full"
                       )}
                     >
-                      {t(skill?.attributes?.key)}
+                      {skill.name}
                     </span>
                   </m.span>
                   {index + 1 === DEFAULT_VISIBLE_COUNT &&
-                    arr?.length > DEFAULT_VISIBLE_COUNT && (
+                    arr.length > DEFAULT_VISIBLE_COUNT && (
                       <>
                         <input
                           type="checkbox"
-                          id={"see-more-" + subCategory?.name}
+                          id={"see-more-" + subCategory.name}
                           className="see-more"
                         />
                         <m.label
@@ -77,7 +73,7 @@ export default function Techs({ className, data }: ITechs) {
                             "group see-more-label flex items-center justify-center",
                             seeMoreClass
                           )}
-                          htmlFor={"see-more-" + subCategory?.name}
+                          htmlFor={"see-more-" + subCategory.name}
                           tabIndex={0}
                         >
                           <div
@@ -94,7 +90,7 @@ export default function Techs({ className, data }: ITechs) {
                     )}
                 </Fragment>
               ))}
-              {subCategory?.skills?.data?.length > DEFAULT_VISIBLE_COUNT && (
+              {subCategory.skills.length > DEFAULT_VISIBLE_COUNT && (
                 <m.label
                   key="moreButton"
                   variants={fadeInItemRapid}
@@ -102,7 +98,7 @@ export default function Techs({ className, data }: ITechs) {
                     "group hidden items-center justify-center",
                     seeMoreClass
                   )}
-                  htmlFor={"see-more-" + subCategory?.name}
+                  htmlFor={"see-more-" + subCategory.name}
                   tabIndex={0}
                 >
                   <div

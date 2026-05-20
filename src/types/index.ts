@@ -21,9 +21,9 @@ export interface WithClassNameProps {
 }
 
 export interface ICard {
-  image: {
+  image?: {
     url: string
-    alternativeText?: string
+    alternativeText?: string | null
     width: number
     height: number
     name: string

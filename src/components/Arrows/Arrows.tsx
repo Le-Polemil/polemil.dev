@@ -12,8 +12,8 @@ export default function Arrows() {
   const [scrollQty, setScrollQty] = useState(0)
   const { previousTab, currentTab, nextTab } = useTabs()
   const { push } = useRouter()
-  const previousTabUrl = previousTab?.attributes?.url
-  const nextTabUrl = nextTab?.attributes?.url
+  const previousTabUrl = previousTab?.url
+  const nextTabUrl = nextTab?.url
   const lastExecutionTime = useRef(0)
 
   useEffect(() => {

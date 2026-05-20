@@ -16,11 +16,16 @@ const TECHS = "techs",
 const CATEGORIES = [TECHS, KNOW_HOW, SOFT_SKILLS] as const
 
 export default function Stack({ previousRoute }: IPageProps) {
-  const [t] = useTranslation()
-  const [tab, setTab] = useState(TECHS)
+  const { i18n } = useTranslation()
+  const [tab, setTab] = useState<(typeof CATEGORIES)[number]>(TECHS)
 
-  const { data, loading } = useQuery<SkillCategoriesDataType>(GET_SKILLS)
-  const { techs, knowHow, softSkills } = data ?? {}
+  const { data, loading } = useQuery<SkillCategoriesDataType>(GET_SKILLS, {
+    variables: { locale: i18n.language },
+  })
+  const techs = data?.techs?.[0]
+  const knowHow = data?.knowHow?.[0]
+  const softSkills = data?.softSkills?.[0]
+  const categoryByKey = { techs, knowHow, softSkills }
 
   return (
     <PageTransition
@@ -57,7 +62,7 @@ export default function Stack({ previousRoute }: IPageProps) {
               id={category}
               onClick={() => setTab(category)}
             >
-              {t("stack.category." + category)}
+              {categoryByKey[category]?.name ?? category}
             </Button>
           ))}
         </div>
@@ -65,15 +70,7 @@ export default function Stack({ previousRoute }: IPageProps) {
         <section className="area-[details] flex flex-col overflow-hidden border-4 border-dashed rounded-lg">
           <div className="w-full h-full">
             <div className="flex flex-wrap gap-4 h-full overflow-x-hidden">
-              {tab === TECHS && techs && (
-                <Feat.Techs key={TECHS} data={techs?.data} />
-              )}
-              {tab === KNOW_HOW && knowHow && (
-                <Feat.Techs key={TECHS} data={knowHow?.data} />
-              )}
-              {tab === SOFT_SKILLS && softSkills && (
-                <Feat.Techs key={TECHS} data={softSkills?.data} />
-              )}
+              <Feat.Techs key={tab} data={categoryByKey[tab]} />
             </div>
           </div>
         </section>
