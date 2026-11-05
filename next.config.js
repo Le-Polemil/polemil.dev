@@ -2,6 +2,8 @@
 const path = require('path');
 
 const nextConfig = {
+  // Image Docker minimale : serveur + deps tracées dans .next/standalone.
+  output: 'standalone',
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
